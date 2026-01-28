@@ -1,11 +1,13 @@
-import { getAllArticles } from "@/lib/contentful";
+import { getAllPages, getPage } from "@/lib/contentful";
 import Link from "next/link";
 
 export default async function Slug() {
-  const articles = await getAllArticles();
-  console.log(articles);
+  const pages = await getAllPages();
+  console.log(pages);
+  const page = await getPage(pages[0].sys.id);
+  console.log(page);
   return (
-    articles && (
+    pages && (
       <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
         <section className="w-full pt-12">
           <div className="mx-auto container space-y-12 px-4 md:px-6">
@@ -19,7 +21,7 @@ export default async function Slug() {
           </div>
           <div className="space-y-12">
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {articles.map((article) => (
+              {pages.map((article) => (
                 <article
                   key={article.sys.id}
                   className="h-full flex flex-col rounded-lg shadow-lg overflow-hidden"
