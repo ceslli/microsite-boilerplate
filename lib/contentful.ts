@@ -58,6 +58,18 @@ export async function getPage(id: string, isDraftMode = false) {
             }
             slug 
             title
+            body {
+                json
+                links {
+                    entries {
+                        inline {
+                            sys {
+                                id
+                            }
+                        }
+                    }
+                }
+            }
   }
 }`,
     isDraftMode,
